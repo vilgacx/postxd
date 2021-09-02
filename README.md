@@ -1,7 +1,7 @@
-# ptxd
+# postxd
 ## Command-Line tool for downloading Social Media posts.
 #### Made with Python.
-
+##### Ya I know it's pretty lame project.
 ## Libraries used 
 `sys` `bs4` `requests` `alive_progress`
 
