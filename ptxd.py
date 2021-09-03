@@ -9,7 +9,7 @@ post_url=input('Post URL: ')
 filetype=str(sys.argv[2])
 
 reddit=requests.get('https://redditsave.com/info?url='+post_url)
-insta=requests.post('https://www.w3toys.com/',{'link':'https://www.instagram.com/p/CTMyzZILLwH/?utm_source=ig_web_copy_link','submit':'DOWNLOAD'})
+insta=requests.post('https://www.w3toys.com/',{'link':post_url,'submit':'DOWNLOAD'})
 
 #fb=requests.get()
 #twitter=requests.get()
