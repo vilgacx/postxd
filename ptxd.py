@@ -1,28 +1,40 @@
 #!/usr/bin/env python3
 import sys
+import random
 import requests
 from alive_progress import alive_it
 from bs4 import BeautifulSoup
 
 post_url=input('Enter Post Link: ')
-filename=str(sys.argv[1])
-re=requests.get('https://redditsave.com/info?url='+post_url)
+filetype=str(sys.argv[1])
 
-if re.status_code == 200:
-    print('Connected')
+reddit=requests.get('https://redditsave.com/info?url='+post_url)
+insta=requests.post('https://www.w3toys.com/',{'link':'https://www.instagram.com/p/CTMyzZILLwH/?utm_source=ig_web_copy_link','submit':'DOWNLOAD'})
 
-    soup = BeautifulSoup(re.content, 'html.parser')
-    file_url = ((soup.find_all('a',class_='downloadbutton'))[0])['href']
-    
+#fb=requests.get()
+#twitter=requests.get()
+
+def main(file_url):
     r = requests.get(file_url, stream = True)
-    with open(filename,"wb") as flw:
-        for chunk in alive_it(r.iter_content(chunk_size=2048),title=f"Downloading {filename}"):
+    with open((str(random.randint(1,10000))+'.'+filetype),"wb") as flw:
+        for chunk in alive_it(r.iter_content(chunk_size=2048),title=f"Downloading.."):
             if chunk:
                 flw.write(chunk)
             else:
                 print('Something went wrong.')
 
-elif re.status_code == 400:
-    print("Invalid Post Link.")
+if "wwww.reddit.com" in list(post_url.split('/')):
+    if reddit.status_code == 200:
+        soup = BeautifulSoup(reddit.content, 'html.parser')
+        redditxd = list(((soup.find_all('a',class_='downloadbutton'))[0])['href'])
+        for i in redditxd:
+            main(i)
+    elif reddit.status_code == 404:
+        print("Invalid Post Link.")
+elif "www.instagram.com" in list(post_url.split('/')):
+    soup = BeautifulSoup(insta.content,'html.parser')
+    instaxd = soup.find_all('a',attrs={'rel':'noopener noreferrer'})
+    for i in instaxd:
+        main(i['href'])
 else:
     print('Something went wrong.')
