@@ -15,3 +15,4 @@
 3. Then you can use it by typing `ptxd.py <post-url>` & accses it globally.
 
 # NOTE : Currently It only supports Reddit & Instagram posts.
+# More Important NOTE: Development is Paused. Will be Resumed soon.
