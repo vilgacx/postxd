@@ -16,3 +16,5 @@
 
 # NOTE : Currently It only supports Reddit & Instagram posts.
 # More Important NOTE: Development is Paused. Will be Resumed soon.
+
+# Even More Important Note: I will rebuild and finsh this project in rust lang.
